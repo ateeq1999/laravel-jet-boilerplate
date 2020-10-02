@@ -2,12 +2,12 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::group(
-    [
-        'prefix' => LaravelLocalization::setLocale(),
-        'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-    ], function(){ 
-});
+// Route::group(
+//     [
+//         'prefix' => LaravelLocalization::setLocale(),
+//         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
+//     ], function(){ 
+// });
 
 
 Route::get('/', function () {
@@ -29,3 +29,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/users/create', function (
 Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/edit', function () {
     return view('users');
 })->name('users.edit');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/form-steps', function () {
+    return view('steps');
+})->name('steps');
