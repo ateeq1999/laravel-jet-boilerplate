@@ -7,11 +7,6 @@ Route::group(
         'prefix' => LaravelLocalization::setLocale(),
         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
     ], function(){ 
-    Route::get('/test', function () {
-        $service = App\Models\Service::find(1)->first();
-
-        dd($service->name);
-    });
 });
 
 
