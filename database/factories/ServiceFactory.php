@@ -28,7 +28,7 @@ class ServiceFactory extends Factory
                 'name' => 'اسم',
             ],
             'en' => [
-                'name' => 'Test Name',
+                'name' => $this->faker->name,
             ],
         ];
     }

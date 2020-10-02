@@ -13,4 +13,5 @@ class Service extends Model implements TranslatableContract
     
     public $translatedAttributes = ['name'];
     protected $fillable = ['price', 'number'];
+    
 }
