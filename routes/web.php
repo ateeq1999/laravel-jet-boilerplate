@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
+use App\http\Controllers;
 
 // Route::group(
 //     [
@@ -44,38 +45,28 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/edit', funct
     return view('users');
 })->name('users.edit');
 
+// Questions Routes
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/questions', function () {
+    return view('questions');
+})->name('questions');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/questions/create', function () {
+    return view('questions');
+})->name('questions.create');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/questions/{question}/edit', function () {
+    return view('questions');
+})->name('questions.edit');
+
+// Answers Routes
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/answers', function () {
+    return view('answers');
+})->name('users.answers');
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/survey', function () {
     return view('steps');
 })->name('survey');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', function () {
-
-    $scores = [];
-
-    $answers = session()->get('answers_data');
-
-    $results = session()->get('models_data');
-    
-    foreach ($results as $key => $result) {
-
-        $sum = 0;
-        
-        foreach ($result as $value) {
-            $sum += $value;
-        }
-
-        $scores[$key] = $sum;
-        // $scores[$key.'_rate'] = $sum*(1/500)*100;
-
-    }
-
-    // Save User Answers
-    $answer = Auth::user()->answers()->create($answers);
-    
-    // Save User Scores Result
-    $result = Auth::user()->results()->create($scores);
-    
-    dd($scores, $result, $answer);
-
-    return view('results', [ 'scores' => $scores ]);
-})->name('results');
+Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', 'HomeController@result')->name('results');

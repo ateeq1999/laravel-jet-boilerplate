@@ -16,19 +16,29 @@ class FormSteps extends Component
     public $model_score = array();
     public $user;
 
+    // init Variables Data In Mount Method
+
     public function mount(){
 
+        // init Step Var Value
         $this->step = 1;
-
+        
+        // init User Var Value
         $this->user = Auth::user();
-
+        
         // session()->forget('answers');
-            
+        
+        // Get Model_score Var Value Form The Session
         $this->model_score = session()->get('models_scores');
-
+        
+        // Get Answers Var Value Form The Session
         $this->answers = session()->get('answers');
 
     }
+
+    /**
+     * increment The Step Var Value
+     */
 
     public function incrementSteps()
     {
@@ -40,6 +50,10 @@ class FormSteps extends Component
 
         }
     }
+
+    /**
+     * Decrement The Step Var Value
+     */
 
     public function decrementSteps()
     {
