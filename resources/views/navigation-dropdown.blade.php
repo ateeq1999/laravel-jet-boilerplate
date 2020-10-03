@@ -22,6 +22,18 @@
                         {{ __('Survey') }}
                     </x-jet-nav-link>
                 </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('questions') }}" :active="request()->routeIs('questions')">
+                        {{ __('Questions') }}
+                    </x-jet-nav-link>
+                </div>
+
+                <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-jet-nav-link href="{{ route('users.answers') }}" :active="request()->routeIs('users.answers')">
+                        {{ __('Answers') }}
+                    </x-jet-nav-link>
+                </div>
             </div>
 
             <!-- Settings Dropdown -->
