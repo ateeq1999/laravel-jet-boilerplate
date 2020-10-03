@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use Illuminate\Support\Facades\Auth;
 
 // Route::group(
 //     [
@@ -12,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
+});
+
+Route::get('/test', function () {
+
+    // $answers = session()->get('answers_data');
+
+    // $answer = Auth::user()->answers()->create($answers);
+
+    $results = session()->get('scores_data');
+
+    $result = Auth::user()->results()->create($results);
+
+    return $result;
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -38,6 +52,8 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', fu
 
     $scores = [];
 
+    $answers = session()->get('answers_data');
+
     $results = session()->get('models_data');
     
     foreach ($results as $key => $result) {
@@ -49,11 +65,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', fu
         }
 
         $scores[$key] = $sum;
-        $scores[$key.'_rate'] = $sum*(1/500)*100;
+        // $scores[$key.'_rate'] = $sum*(1/500)*100;
 
     }
+
+    // Save User Answers
+    $answer = Auth::user()->answers()->create($answers);
     
-    // dd($scores);
+    // Save User Scores Result
+    $result = Auth::user()->results()->create($scores);
+    
+    dd($scores, $result, $answer);
 
     return view('results', [ 'scores' => $scores ]);
 })->name('results');

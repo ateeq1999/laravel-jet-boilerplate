@@ -20,18 +20,13 @@ class FormSteps extends Component
 
         $this->step = 1;
 
-        $this->user = Auth::user();;
+        $this->user = Auth::user();
 
-        $this->answers = [
-            'requirements' => 0,
-            'cost' => 0,
-            'duration' => 0,
-            'flexible_to_change' => 0,
-            'customer_availability' => 0,
-            'simplicity_ratio' => 0,
-            'project_size' => 0,
-            'project_complex' => 0,
-        ];
+        // session()->forget('answers');
+            
+        $this->model_score = session()->get('models_scores');
+
+        $this->answers = session()->get('answers');
 
     }
 
@@ -40,8 +35,9 @@ class FormSteps extends Component
         $this->step++;
 
         if ($this->step > 8) {
-            // dd($this->model_score);
-            return redirect('results', $this->user->id);
+
+            return redirect()->route('results', $this->user->id);
+
         }
     }
 
@@ -52,7 +48,15 @@ class FormSteps extends Component
 
     public function setHigh($criteria){
 
+        if($this->step >  1){
+            
+            $this->answers = session()->get('answers_data');
+            
+        }
+
         $this->answers[$criteria] = $this->high;
+
+        session()->put('answers_data', $this->answers);
 
         $this->criteria_score($criteria, $this->answers[$criteria]);
 
@@ -60,7 +64,15 @@ class FormSteps extends Component
 
     public function setMedium($criteria){
 
+        if($this->step >  1){
+            
+            $this->answers = session()->get('answers_data');
+            
+        }
+
         $this->answers[$criteria] = $this->medium;
+
+        session()->put('answers_data', $this->answers);
 
         $this->criteria_score($criteria, $this->answers[$criteria]);
 
@@ -68,7 +80,15 @@ class FormSteps extends Component
 
     public function setLow($criteria){
 
+        if($this->step > 1){
+            
+            $this->answers = session()->get('answers_data');
+            
+        }
+
         $this->answers[$criteria] = $this->low;
+
+        session()->put('answers_data', $this->answers);
 
         $this->criteria_score($criteria, $this->answers[$criteria]);
 
@@ -77,13 +97,7 @@ class FormSteps extends Component
     
     public function criteria_score($criteria, $value){
 
-        if($this->step <  1){
-            
-            session()->forget('models_scores');
-            
-            $this->model_score = session()->get('models_scores');
-
-        }else{
+        if($this->step > 1){
             
             $this->model_score = session()->get('models_data');
             

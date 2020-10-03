@@ -80,8 +80,23 @@ class AppServiceProvider extends ServiceProvider
             ],
         ];
 
+        $answers = [
+            'requirements' => 0,
+            'cost' => 0,
+            'duration' => 0,
+            'flexible_to_change' => 0,
+            'customer_availability' => 0,
+            'simplicity_ratio' => 0,
+            'project_size' => 0,
+            'project_complex' => 0,
+        ];
+
         if(session()->put('models_scores') == null){
             session()->put('models_scores', $models_scores);
+        }
+
+        if(session()->put('answers') == null){
+            session()->put('answers', $answers);
         }
 
     }
