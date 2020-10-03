@@ -30,6 +30,30 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/edit', funct
     return view('users');
 })->name('users.edit');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/form-steps', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/survey', function () {
     return view('steps');
-})->name('steps');
+})->name('survey');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', function () {
+
+    $scores = [];
+
+    $results = session()->get('models_data');
+    
+    foreach ($results as $key => $result) {
+
+        $sum = 0;
+        
+        foreach ($result as $value) {
+            $sum += $value;
+        }
+
+        $scores[$key] = $sum;
+        $scores[$key.'_rate'] = $sum*(1/500)*100;
+
+    }
+    
+    // dd($scores);
+
+    return view('results', [ 'scores' => $scores ]);
+})->name('results');
