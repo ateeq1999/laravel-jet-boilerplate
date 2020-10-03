@@ -70,3 +70,4 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/survey', function () {
 })->name('survey');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', 'HomeController@result')->name('results');
+Route::middleware(['auth:sanctum', 'verified'])->get('reports', 'HomeController@reports')->name('reports');

@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\Result;
 
 class HomeController extends Controller
 {
@@ -40,4 +41,5 @@ class HomeController extends Controller
         // Return Data To The View
         return view('results', compact('scores', 'result', 'answer'));
     }
+
 }
