@@ -20,7 +20,7 @@ class AnswersTables extends Component
     public function render()
     {
         return view('livewire.answers-tables', [
-            'answers' => $this->user->answers()->paginate(1),
+            'answers' => $this->user->answers()->paginate(5),
         ]);
     }
 }
