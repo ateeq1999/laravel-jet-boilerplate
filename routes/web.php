@@ -69,5 +69,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/survey', function () {
     return view('steps');
 })->name('survey');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', 'HomeController@result')->name('results');
+Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', '\App\Http\Controllers\HomeController@result')->name('results');
 Route::middleware(['auth:sanctum', 'verified'])->get('reports', 'HomeController@reports')->name('reports');

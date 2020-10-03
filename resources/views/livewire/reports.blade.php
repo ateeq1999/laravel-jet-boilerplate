@@ -83,7 +83,7 @@
       <div class="w-full lg:w-1/2 px-4 mt-4 mb-4 lg:mb-0">
         <div class="h-full border rounded shadow">
           <div class="flex items-center justify-between px-4 py-3 border-b">
-            <h3 class="text-lg font-heading">{{ __('v Process') }}</h3><span class="py-1 px-3 text-sm text-white font-semibold bg-green-500 rounded-full">Score</span>
+            <h3 class="text-lg font-heading">{{ __('V Process') }}</h3><span class="py-1 px-3 text-sm text-white font-semibold bg-green-500 rounded-full">Score</span>
           </div>
           <div class="flex flex-col p-4">
             <h3 class="text-3xl mb-3 font-heading font-semibold">{{ $v_process_rate }}</h3>
