@@ -16,6 +16,7 @@ class CreateResultsTable extends Migration
         Schema::create('results', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->foreignId('answer_id')->nullable();
             $table->integer('waterfall');
             $table->integer('incremental');
             $table->integer('spiral');

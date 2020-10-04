@@ -22,11 +22,16 @@ Route::get('/test', function () {
 
     // $answer = Auth::user()->answers()->create($answers);
 
-    $results = session()->get('scores_data');
+    // $results = session()->get('scores_data');
 
-    $result = Auth::user()->results()->create($results);
+    // $result = Auth::user()->results()->create($results);
+    $result = App\Models\Result::find(1);
+    $answer = App\Models\Answer::find(1);
 
-    return $result;
+    $result->update(['answer_id' => 1 ]);
+
+    return $answer->result;
+    // return $result->answer;
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -70,4 +75,5 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/survey', function () {
 })->name('survey');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', '\App\Http\Controllers\HomeController@result')->name('results');
+Route::middleware(['auth:sanctum', 'verified'])->get('/answers/{answer}/results', '\App\Http\Controllers\HomeController@answers_result')->name('answers.result');
 Route::middleware(['auth:sanctum', 'verified'])->get('reports', 'HomeController@reports')->name('reports');

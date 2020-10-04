@@ -24,6 +24,7 @@
                 <th class="px-6 pt-6 pb-4">Simplicity Ratio</th>
                 <th class="px-6 pt-6 pb-4">Size</th>
                 <th class="px-6 pt-6 pb-4">Complex</th>
+                <th class="px-6 pt-6 pb-4"></th>
             </tr>
             @foreach ($answers as $answer)
                 <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
@@ -66,6 +67,11 @@
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                         {{ $answer->project_complex }}
                         </span>
+                    </td>
+                    <td class="border-t">
+                        <a href="{{ route('answers.result', $answer->id ) }}" class="px-6 py-4 flex items-center" tabindex="-1">
+                        {{ __('View Result') }}
+                        </a>
                     </td>
                 </tr>
             @endforeach

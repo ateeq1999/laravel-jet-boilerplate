@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use App\Models\User;
 use App\Models\Result;
+use App\Models\Answer;
 
 class HomeController extends Controller
 {
@@ -35,12 +36,23 @@ class HomeController extends Controller
 
         // Save User Answers
         $answer = Auth::user()->answers()->create($answers);
-        
+
+        $scores['answer_id'] = $answer->id;
+
         // Save User Scores Result
         $result = Auth::user()->results()->create($scores);
         
         // Return Data To The View
         return view('results', compact('scores', 'result', 'answer'));
+    }
+
+    public function answers_result(Answer $answer){
+
+        // Get The result Data To Pass it to the view
+        $scores = $answer->result;
+
+        // Return Data To The View
+        return view('results', compact('scores'));
     }
 
 }

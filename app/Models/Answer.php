@@ -10,4 +10,10 @@ class Answer extends Model
     use HasFactory;
 
     protected $guarded  = [];
+
+    public function result()
+    {
+        return $this->hasOne('App\Models\Result', 'answer_id');
+    }
+    
 }

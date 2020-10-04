@@ -10,4 +10,9 @@ class Result extends Model
     use HasFactory;
 
     protected $guarded  = [];
+
+    public function answer()
+    {
+        return $this->belongsTo('App\Models\Answer', 'answer_id');
+    }
 }
