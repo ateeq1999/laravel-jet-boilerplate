@@ -30,7 +30,6 @@ class HomeController extends Controller
             }
 
             $scores[$key] = $sum;
-            // $scores[$key.'_rate'] = $sum*(1/500)*100;
 
         }
 
