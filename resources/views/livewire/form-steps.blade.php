@@ -237,12 +237,13 @@
 
     {{-- Toggle Buttons --}}
     <div class="px-6 py-4 bg-gray-100 text-right flex" style="{{ $step === $question->id ? '' : 'display: none;' }}">
+    {{-- <div class="px-6 py-4 bg-gray-100 text-right flex" style="{{ $step === $question->id ? '' : 'display: none;' }}"> --}}
 
-        <x-jet-button class="mx-2 w-1/2" wire:click="decrementSteps()" wire:loading.attr="disabled">
+        <x-jet-button style="{{ $selected == true ? '' : 'display: none;' }}" class="mx-2 w-1/2" wire:click="decrementSteps()" wire:loading.attr="disabled">
             {{ __('Prev') }}
         </x-jet-button>
 
-        <x-jet-secondary-button  class="mx-2 w-1/2 py-4 disabled:opacity-25" wire:click="incrementSteps()" wire:loading.attr="disabled">
+        <x-jet-secondary-button style="{{ $selected == true ? '' : 'display: none;' }}"  class="mx-2 w-1/2 py-4 disabled:opacity-25" wire:click="incrementSteps()" wire:loading.attr="disabled">
             {{ __('Next') }}
         </x-jet-secondary-button>
     

@@ -16,7 +16,7 @@ class HomeController extends Controller
 
         // Get Session Data For Answers
         $answers = session()->get('answers_data');
-        
+
         // Get Session Data For Models Scores
         $results = session()->get('models_data');
         

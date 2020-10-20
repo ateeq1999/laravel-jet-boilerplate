@@ -13,7 +13,12 @@ class Answer extends Model
 
     public function result()
     {
-        return $this->hasOne('App\Models\Result', 'answer_id');
+        return $this->hasOne(Result::class, 'answer_id');
+    }
+
+    public function project()
+    {
+        return $this->belongsTo(Project::class, 'project_id');
     }
     
 }

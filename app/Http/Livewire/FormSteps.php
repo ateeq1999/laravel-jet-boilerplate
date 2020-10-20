@@ -15,6 +15,8 @@ class FormSteps extends Component
     public $answers = array();
     public $model_score = array();
     public $user;
+    public $project;
+    public $selected;
 
     // init Variables Data In Mount Method
 
@@ -34,6 +36,11 @@ class FormSteps extends Component
         // Get Answers Var Value Form The Session
         $this->answers = session()->get('answers');
 
+        // Get Project Var Value Form The Session
+        $this->project = session()->get('project');
+
+        $this->answers['project_id'] = $this->project->id;
+
     }
 
     /**
@@ -42,6 +49,8 @@ class FormSteps extends Component
 
     public function incrementSteps()
     {
+        $this->selected = false;
+
         $this->step++;
 
         if ($this->step > 8) {
@@ -57,10 +66,14 @@ class FormSteps extends Component
 
     public function decrementSteps()
     {
+        $this->selected = true;
+
         $this->step--;
     }
 
     public function setHigh($criteria){
+
+        $this->selected = true;
 
         if($this->step >  1){
             
@@ -78,6 +91,8 @@ class FormSteps extends Component
 
     public function setMedium($criteria){
 
+        $this->selected = true;
+
         if($this->step >  1){
             
             $this->answers = session()->get('answers_data');
@@ -93,6 +108,8 @@ class FormSteps extends Component
     }
 
     public function setLow($criteria){
+
+        $this->selected = true;
 
         if($this->step > 1){
             

@@ -4,34 +4,9 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Support\Facades\Auth;
 use App\http\Controllers;
 
-// Route::group(
-//     [
-//         'prefix' => LaravelLocalization::setLocale(),
-//         'middleware' => [ 'localeSessionRedirect', 'localizationRedirect', 'localeViewPath' ]
-//     ], function(){ 
-// });
-
 
 Route::get('/', function () {
     return view('welcome');
-});
-
-Route::get('/test', function () {
-
-    // $answers = session()->get('answers_data');
-
-    // $answer = Auth::user()->answers()->create($answers);
-
-    // $results = session()->get('scores_data');
-
-    // $result = Auth::user()->results()->create($results);
-    $result = App\Models\Result::find(1);
-    $answer = App\Models\Answer::find(1);
-
-    $result->update(['answer_id' => 1 ]);
-
-    return $answer->result;
-    // return $result->answer;
 });
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
@@ -70,9 +45,13 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/answers', function () {
     return view('answers');
 })->name('users.answers');
 
-Route::middleware(['auth:sanctum', 'verified'])->get('/survey', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/projects/create', function () {
+    return view('project-details');
+})->name('create.projects.details');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/projects/{project}/answers', function () {
     return view('steps');
-})->name('survey');
+})->name('projects.answers');
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/users/{user}/results', '\App\Http\Controllers\HomeController@result')->name('results');
 Route::middleware(['auth:sanctum', 'verified'])->get('/answers/{answer}/results', '\App\Http\Controllers\HomeController@answers_result')->name('answers.result');

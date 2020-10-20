@@ -63,6 +63,11 @@ class User extends Authenticatable
         return $this->hasMany(Result::class, 'user_id');
     }
 
+    public function projects()
+    {
+        return $this->hasMany(Project::class, 'user_id');
+    }
+
     public function answers()
     {
         return $this->hasMany(Answer::class, 'user_id');

@@ -16,6 +16,7 @@ class CreateAnswersTable extends Migration
         Schema::create('answers', function (Blueprint $table) {
             $table->id();
             $table->foreignId('user_id')->nullable();
+            $table->foreignId('project_id')->nullable();
             $table->integer('requirements');
             $table->integer('cost');
             $table->integer('duration');

@@ -8,7 +8,7 @@
         <div class="flex items-center px-5">
             <div class="flex w-full bg-white shadow rounded">
                 <x-jet-button class="btn-indigo">
-                    <a href="{{ route('survey') }}">{{ __('New Survey') }}</a>
+                    <a href="{{ route('create.projects.details') }}">{{ __('New Survey') }}</a>
                 </x-jet-button>
             </div>
         </div>
@@ -16,6 +16,7 @@
     <div class="bg-white rounded shadow overflow-x-auto">
         <table class="w-full whitespace-no-wrap">
             <tr class="text-left font-bold">
+                <th class="px-6 pt-6 pb-4">Project Name</th>
                 <th class="px-6 pt-6 pb-4">Requirements</th>
                 <th class="px-6 pt-6 pb-4">Cost</th>
                 <th class="px-6 pt-6 pb-4">Duration</th>
@@ -28,6 +29,11 @@
             </tr>
             @foreach ($answers as $answer)
                 <tr class="hover:bg-gray-100 focus-within:bg-gray-100">
+                    <td class="border-t">
+                        <span class="px-6 py-4 flex items-center" tabindex="-1">
+                        {{ $answer->project->name }}
+                        </span>
+                    </td>
                     <td class="border-t">
                         <span class="px-6 py-4 flex items-center" tabindex="-1">
                         {{ $answer->requirements }}
